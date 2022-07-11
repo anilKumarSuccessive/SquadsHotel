@@ -15,7 +15,7 @@ http://www.templatemo.com/tm-475-holiday
 	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-<link rel="stylesheet" href="assets/css/style.css">
+<!-- <link rel="stylesheet" href="assets/css/style.css"> -->
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700'
 	rel='stylesheet' type='text/css'>
@@ -24,6 +24,7 @@ http://www.templatemo.com/tm-475-holiday
 <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 <link href="css/flexslider.css" rel="stylesheet">
 <link href="css/templatemo-style.css" rel="stylesheet">
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <style>
@@ -275,18 +276,24 @@ body {
 	margin-right: 50px;
 }
 
+.buttons {
+	display: flex;
+	height: 80px;
+}
+
 .button {
 	background-color: black;
 	border: none;
 	color: white;
-	padding: 10px 28px;
+	padding: 10px 20px;
 	text-align: center;
 	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	margin: 20px 36px;
+	display: block;
+	font-size: 14px;
+	margin: 20px 30px 20px 0px;
 	cursor: pointer;
-	height: 40px;
+	height: 35px;
+	width: 120px;
 }
 
 .button:hover {
@@ -295,11 +302,25 @@ body {
 }
 
 .btns {
-	margin-left: 330px;
+	
 }
 
 .forBg {
 	background-color: #E5E5E5;
+}
+
+.plpAlign {
+	margin-left: 50px;
+	margin-top: 10px;
+}
+
+.descriptionDisplay {
+	display: inline-block;
+}
+
+.subContainer {
+	display: flex;
+	flex-direction: column;
 }
 </style>
 
@@ -340,7 +361,7 @@ body {
 					<div th:each="image:${hotel.images}">
 						<span th:if="${image.isHeroImage == true}"> <img
 							th:src="${image.url}" class="img-responsive image"
-							style="padding-bottom: 20px">
+							style="padding-bottom: 20px; width: 1800px">
 						</span>
 					</div>
 
@@ -349,28 +370,85 @@ body {
 				</div>
 				<!-- <div class="card-body">  -->
 				<div
-					th:if="${hotel.name != 'Impala No Availabilities Motel [SANDBOX] (Example Hotel)'}">
-					<h5 class="card-title" th:text="${hotel.name}"
-						style="margin-left: 20px"></h5>
+					th:if="${hotel.name != 'Impala No Availabilities Motel [SANDBOX] (Example Hotel)'}"
+					class="subContainer">
+					<h5 class="card-title " th:text="${hotel.name}"
+						style="margin-left: 50px"></h5>
 
-			<!-- 		<div th:each="price:${hotel.roomTypes}">
-					   <div th:each="rate:${price.rates}">
-				 	       <h1 th:text="${rate.roomId}"></h1>
-					  </div>
-					</div>	
-					 -->
+					<div class="plpAlign">
+						<p th:text="${hotel.address['line1']}" class="descriptionDisplay"></p>
+						,
+						<p th:text="${hotel.address['city']}" class="descriptionDisplay"></p>
+						,
+						<p th:text="${hotel.address['postalCode']}"
+							class="descriptionDisplay"></p>
+						,
+						<p th:text="${hotel.address['countryName']}"
+							class="descriptionDisplay"></p>
 
-					
+					</div>
 
-					<div>
+					<div th:with="rate=${hotel.starRating}" class="plpAlign">
+						<p class="card-text">
+							<th:block th:each="i : ${#numbers.sequence( 1,rate,1)}">
+								<i class="fa fa-star star-rating"></i>
+							</th:block>
+						</p>
+
+					</div>
+
+					<div class="plpAlign">
+						<th:block th:each="amenity,iterStat:${hotel.amenities}"
+							th:if="${iterStat.index}<5">
+							<th:block th:each="forma:${amenity['formatted']}">
+								<span th:text="${forma}+ ','"> </span>
+							</th:block>
+						</th:block>
+					</div>
+
+
+
+					<!-- 	<p th:text="${hotel.starRating}"
+							style="margin-left: 50px; display: inline-block;"></p>
+						Star Rating
+					-->
+
+					<!--<div class="plpAlign">
+							 	<p th:text="${total1['amount']}" class="descriptionDisplay"></p>
+							Rs.  
+						</div>
+						-->
+
+
+					<div th:each="price:${hotel.roomTypes}">
+						<div th:each="rate:${price.rates}">
+							<div th:each="retailRates:${rate.retailRate}">
+								<div th:each="totala:${retailRates.value}">
+									<div th:each="amount1:${totala.value}">
+										<!-- <p th:text="${amount1}"></p> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+					<div class="buttons plpAlign">
 						<a href="#" class="button">View Details</a> <a href="#"
 							class="button">BookNow</a>
 					</div>
 				</div>
-				<!-- </div>  -->
 
 			</div>
+
+
+
 		</div>
+
+
+	</div>
+	</div>
 
 	</div>
 
@@ -415,21 +493,4 @@ body {
 	</div>
 
 </body>
-<!-- 
-<script>
-						var data = "${arr}";
-						var alt = data["images"].name, mhtml = "";
-						$
-								.each(
-										data["images"].url,
-										function(i, img) {
-											mhtml += '<li><div class=""><img src="' + img + '" /></div>';
-											mhtml += '<h1 class="title">' + alt
-													+ '</h1>';
-											mhtml += '</li>';
-										});
-						var $ul = $('<ul>').append($(mhtml));
-						$('#mydiv').append($ul);
-					</script>
-		 -->
 </html>

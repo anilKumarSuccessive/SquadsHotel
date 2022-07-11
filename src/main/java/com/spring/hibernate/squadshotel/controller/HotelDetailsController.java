@@ -38,31 +38,50 @@ public class HotelDetailsController {
 	@SuppressWarnings("unchecked")
 	@GetMapping("/hotels")
 	public ModelAndView getHotels() throws JsonMappingException, JsonProcessingException {
-		String startDate="2022-07-05";
-		String endDate="2022-07-06";
-		
+		String startDate = "2022-07-20";
+		String endDate = "2022-07-24";
+
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("x-api-key", "sandb_o0yTj57YBrlYWB3FSabE7GgXMnpCmIpDOzlhGQLq");
 		HttpEntity<Object> entity = new HttpEntity<>(headers);
-	
-		String url = "https://sandbox.impala.travel/v1/hotels/?start="+startDate+"&end="+endDate;
+
+		String url = "https://sandbox.impala.travel/v1/hotels/?start=" + startDate + "&end=" + endDate;
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<String> rateResponse = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
-		String response = rateResponse.getBody();
+		
 
 		ObjectMapper mapper = new ObjectMapper();
 		Map<String, Object> map = new HashMap<>();
 		map = mapper.readValue(rateResponse.getBody(), new TypeReference<Map<String, Object>>() {
 		});
 		ArrayList<Map<String, Object>> arr = new ArrayList<>();
-
-		for (int i = 0; i < map.size(); i++) {
+		ArrayList<Map<String, Object>> arrRoomtypes = new ArrayList<>();
+		ArrayList<Map<String, Object>> arrrates = new ArrayList<>();
+			//System.out.println(map.size());
+		for (int i = 0; i < map.size() - 1; i++) {
 			arr.addAll((Collection<? extends Map<String, Object>>) map.get("data"));
-			//System.out.println(arr);
 		}
+		for (int j = 0; j < arr.size() - 1; j++) {
+			arrRoomtypes.addAll((Collection<? extends Map<String, Object>>) arr.get(j).get("roomTypes"));
+		}
+		for (int k = 0; k < arrRoomtypes.size() - 1; k++) {
+			arrrates.addAll((Collection<? extends Map<String, Object>>) arrRoomtypes.get(k).get("rates"));
+
+		}
+		LinkedHashMap<String, LinkedHashMap<String, Integer>> retailRates = new LinkedHashMap<>();
+		for (int l = 0; l < arrrates.size() - 1; l++)
+			retailRates.putAll(
+					(Map<? extends String, ? extends LinkedHashMap<String, Integer>>) arrrates.get(l).get("retailRate"));
+
+		LinkedHashMap<String, Integer> total = retailRates.get("total");
+		
 		ModelAndView mr = new ModelAndView("rooms.html");
 		mr.addObject("arr1", arr);
+		mr.addObject("total1", total);
 		return mr;
+		
+		
+		
 
 	}
 

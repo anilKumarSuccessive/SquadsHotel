@@ -196,8 +196,24 @@ http://www.templatemo.com/tm-475-holiday
 .citiesNames li a {
 	color: black;
 }
-</style>
 
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+ $(document).ready(function(){
+ var dtToday= new Date();
+ var month=dtToday.getMonth()+1;
+ var day= dtToday.getDate();
+ var year=dtToday.getFullYear();
+ if(month<10)
+ month='0'+month.toString();
+ if(day<10)
+ day='0'+day.toString();
+ var maxDate =year+ '-'+month+'-'+day;
+ $('.dateControl').attr('min',maxDate);
+ })
+</script>
 </head>
 <body class="tm-gray-bg">
 	<!-- Header -->
@@ -224,7 +240,7 @@ http://www.templatemo.com/tm-475-holiday
 		</div>
 	</div>
 
-	<nav class="tm-nav citiesNames"aria-labelledby="navbarLabel" style="background-color: rgb(38, 37, 53);">
+<!-- 	<nav class="tm-nav citiesNames"aria-labelledby="navbarLabel" style="background-color: rgb(38, 37, 53);">
 		<ul>
 			<li>
 				<div class="dropdown">
@@ -293,7 +309,7 @@ http://www.templatemo.com/tm-475-holiday
 				</div></li>
 		</ul>
 	</nav>
-
+-->
 
 	<!-- Banner -->
 	<section class="tm-banner">
@@ -349,20 +365,24 @@ http://www.templatemo.com/tm-475-holiday
 										</div>
 										<div class="form-group">
 											<div class='input-group date' id='datetimepicker1'>
-												<input type='text' class="form-control"
+											<input type="date" class="dateControl" >
+										<!-- 		<input type='text' class="form-control"
 													th:placeholder="${#dates.createNow()}" /> <span
 													class="input-group-addon"> <span
 													class="fa fa-calendar"></span>
 												</span>
+										 -->
 											</div>
 										</div>
 										<div class="form-group">
 											<div class='input-group date' id='datetimepicker2'>
-												<input type='text' class="form-control"
+											<!-- <input type='text' class="form-control"
 													placeholder="Check-out-date" /> <span
 													class="input-group-addon"> <span
 													class="fa fa-calendar"></span>
 												</span>
+												 -->	
+												 <input type="date" class="dateControl">
 											</div>
 										</div>
 										<div class="form-group margin-bottom-0">
