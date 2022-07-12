@@ -37,7 +37,8 @@ public class BookingController {
 		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter(mapper);
 		return converter;
 	}
-
+	
+	//hotel booking
 	@RequestMapping("/hotels/booking")
 	public String getBooking() throws UnirestException {
 		Unirest.setTimeouts(0, 0);
@@ -50,6 +51,7 @@ public class BookingController {
 		return response.getBody();
 	}
 	
+	//list of all bookings
 	@GetMapping("/hotels/bookings")
 	public String getAllBooking() throws UnirestException {
 	Unirest.setTimeouts(0, 0);
@@ -59,6 +61,7 @@ public class BookingController {
 	return response.getBody();
 	}
 	
+	//retrieve a booking
 	@GetMapping("/hotels/booking/{bookingId}")
 	public ResponseEntity<String> getParticularBooking(@PathVariable("bookingId") String bookingId) {
 		HttpHeaders headers = new HttpHeaders();
@@ -71,6 +74,7 @@ public class BookingController {
 		return res;
 	}
 	
+	//update a booking
 	@RequestMapping("/hotels/booking/update")
 	public HttpResponse<String> updateBooking() throws UnirestException {
 		Unirest.setTimeouts(0, 0);

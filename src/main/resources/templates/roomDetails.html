@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Squads Hotel PLP</title>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+<!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+<link
+	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700'
+	rel='stylesheet' type='text/css'>
+<link href="css/font-awesome.min.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet"> -->
+<link href="css/flexslider.css" rel="stylesheet">
+<link href="css/templatemo-style.css" rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<style>
+body {
+	margin: 0;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #212529;
+	text-align: left;
+	background-color: #fff;
+}
+
+.container1 {
+	margin-top: 40px;
+	margin-left: 50px;
+	margin-right: 50px;
+	background-color: white;
+}
+
+a {
+	font: 'Open Sans';
+	text-decoration: none;
+}
+
+navbar1>ul>li>a {
+	color: white;
+	display: block;
+	padding: 25px 34px 15px 34px;
+	text-transform: uppercase;
+	transition: all 0.3s ease;
+}
+
+li {
+	list-style: none;
+	float: left;
+}
+
+.mainHeader {
+	background: #000000;
+	height: 60px;
+	position: relative;
+	z-index: 100;
+}
+
+.navbar1 {
+	display: block;
+	overflow: hidden;
+	margin-left: 320px;
+}
+
+.navbar1 li {
+	list-style: none;
+	float: left;
+}
+
+.navbar1 li a {
+	color: white;
+	display: block;
+	padding: 25px 34px 15px 34px;
+	text-transform: uppercase;
+	transition: all 0.3s ease;
+	text-decoration: none;
+	font-size: 14px
+}
+
+.navbar1 li a.active, .navbar1 li a:focus, .navbar1 li a:hover {
+	background: #FCDD44;
+	color: #000;
+}
+
+.logoName {
+	color: #FCDD44;
+	font-size: 27px;
+	font-weight: 400;
+	text-transform: uppercase;
+	position: relative;
+	top: 20px;
+}
+
+.logoName:hover, .logoName:focus {
+	color: #FF720B;
+}
+</style>
+
+</head>
+
+<body>
+	<!-- Header -->
+	<div class="mainHeader">
+		<div class="container">
+			<div class="row">
+				<div class=" logoName-container">
+					<a th:href="@{/}" class="logoName" style="text-decoration: none;">Squads
+						Hotel</a>
+				</div>
+				<div>
+
+					<nav class="navbar1">
+						<ul>
+							<li><a th:href="@{/login}" style="">Login</a></li>
+							<li><a th:href="@{/}">Home</a></li>
+							<li><a th:href="@{/About}">About</a></li>
+							<li><a th:href="@{/Contact}">Contact</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

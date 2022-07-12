@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Squads Hotel</title>
+<title>Squads Hotel PLP</title>
 <link rel="icon" type="image/x-icon" href="/img/Squadicon.jpg">
 <!--
 Holiday Template
@@ -21,7 +21,7 @@ http://www.templatemo.com/tm-475-holiday
 	rel='stylesheet' type='text/css'>
 <link href="css/font-awesome.min.css" rel="stylesheet">
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<!-- <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet"> -->
 <link href="css/flexslider.css" rel="stylesheet">
 <link href="css/templatemo-style.css" rel="stylesheet">
 
@@ -187,13 +187,7 @@ body {
 	opacity: 0.8;
 }
 
-@media ( max-width :767px) {
-	.footer-dark .item:not 
-	(.social ) {
-		text-align: center;
-		padding-bottom: 20px;
-	}
-}
+
 
 .footer-dark .item.text {
 	margin-bottom: 36px;
@@ -279,6 +273,7 @@ body {
 .buttons {
 	display: flex;
 	height: 80px;
+	
 }
 
 .button {
@@ -301,9 +296,7 @@ body {
 	color: black;
 }
 
-.btns {
-	
-}
+
 
 .forBg {
 	background-color: #E5E5E5;
@@ -312,6 +305,7 @@ body {
 .plpAlign {
 	margin-left: 50px;
 	margin-top: 10px;
+	
 }
 
 .descriptionDisplay {
@@ -420,23 +414,17 @@ body {
 						-->
 
 
-					<div th:each="price:${hotel.roomTypes}">
-						<div th:each="rate:${price.rates}">
-							<div th:each="retailRates:${rate.retailRate}">
-								<div th:each="totala:${retailRates.value}">
-									<div th:each="amount1:${totala.value}">
-										<!-- <p th:text="${amount1}"></p> -->
-									</div>
-								</div>
-							</div>
+					<div th:each="rate:${hotel.roomTypes[0].rates}" class="plpAlign" style="font-size:18px; color:IndianRed">
+						<div th:each="amount:${rate.sellerToImpalaPayment['amount']}">
+							<p th:text="'&#x20B9;'+${amount}" style=""> </p>
 						</div>
 					</div>
 
 
 
-					<div class="buttons plpAlign">
-						<a href="#" class="button">View Details</a> <a href="#"
-							class="button">BookNow</a>
+					<div class="buttons plpAlign" th:with="hotelid=${hotel.hotelId}">
+						 <a th:href="@{/hotels/}+ ${hotelid}" class="button">View Details</a> <a href="#"
+                            class="button">BookNow</a>
 					</div>
 				</div>
 

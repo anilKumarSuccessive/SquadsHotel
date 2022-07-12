@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 public class RoomDetailsController {
@@ -21,13 +22,14 @@ public class RoomDetailsController {
 	private String apiKey;
 
 	@GetMapping("/hotels/{hotelId}")
-	public ResponseEntity<String> getHotels(@PathVariable("hotelId") String hotelId) {
+	public ModelAndView getHotels(@PathVariable("hotelId") String hotelId) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("x-api-key", "sandb_o0yTj57YBrlYWB3FSabE7GgXMnpCmIpDOzlhGQLq");
 		HttpEntity<Object> entity = new HttpEntity<>(headers);
 		String url = "https://sandbox.impala.travel/v1/hotels/" + hotelId;
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<String> res = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
-		return res;
+		ModelAndView roomD=new ModelAndView("roomDetails.html");
+		return roomD;
 	}
 }
