@@ -122,6 +122,12 @@
 			<version>2.4.4</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>4.0.0-2</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

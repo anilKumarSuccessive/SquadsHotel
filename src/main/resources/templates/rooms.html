@@ -187,8 +187,6 @@ body {
 	opacity: 0.8;
 }
 
-
-
 .footer-dark .item.text {
 	margin-bottom: 36px;
 }
@@ -273,7 +271,6 @@ body {
 .buttons {
 	display: flex;
 	height: 80px;
-	
 }
 
 .button {
@@ -296,8 +293,6 @@ body {
 	color: black;
 }
 
-
-
 .forBg {
 	background-color: #E5E5E5;
 }
@@ -305,7 +300,6 @@ body {
 .plpAlign {
 	margin-left: 50px;
 	margin-top: 10px;
-	
 }
 
 .descriptionDisplay {
@@ -362,7 +356,7 @@ body {
 
 
 				</div>
-				<!-- <div class="card-body">  -->
+
 				<div
 					th:if="${hotel.name != 'Impala No Availabilities Motel [SANDBOX] (Example Hotel)'}"
 					class="subContainer">
@@ -402,45 +396,27 @@ body {
 
 
 
-					<!-- 	<p th:text="${hotel.starRating}"
-							style="margin-left: 50px; display: inline-block;"></p>
-						Star Rating
-					-->
 
-					<!--<div class="plpAlign">
-							 	<p th:text="${total1['amount']}" class="descriptionDisplay"></p>
-							Rs.  
-						</div>
-						-->
-
-
-					<div th:each="rate:${hotel.roomTypes[0].rates}" class="plpAlign" style="font-size:18px; color:IndianRed">
+					<div th:each="rate:${hotel.roomTypes[0].rates}" class="plpAlign"
+						style="font-size: 18px; color: IndianRed">
 						<div th:each="amount:${rate.sellerToImpalaPayment['amount']}">
-							<p th:text="'&#x20B9;'+${amount}" style=""> </p>
+							<p th:text="'&#x20B9;'+${amount}" style=""></p>
 						</div>
 					</div>
 
 
 
 					<div class="buttons plpAlign" th:with="hotelid=${hotel.hotelId}">
-						 <a th:href="@{/hotels/}+ ${hotelid}" class="button">View Details</a> <a href="#"
-                            class="button">BookNow</a>
+						<a th:href="@{/hotels/}+ ${hotelid}" class="button">View
+							Details</a> <a href="#" class="button">BookNow</a>
 					</div>
 				</div>
 
 			</div>
 
-
-
 		</div>
-
-
-	</div>
 	</div>
 
-	</div>
-
-	</div>
 	<div class="footer-dark">
 		<footer>
 			<div class="container">
